@@ -19,7 +19,7 @@ const options = {
         const defaultTime = options.defaultDate.getTime();
         const addedLeadingZero = addLeadingZero(convertMs(selectedTime - defaultTime));
         globalSelectedDate = selectedTime;
-        
+        console.log(defaultTime)
         if(selectedTime < options.defaultDate){
             startBtn.disabled = true;
             clearInterval(timerId);
@@ -33,7 +33,7 @@ const options = {
             minutesElement.innerText = addedLeadingZero.minutes;
             secondsElement.innerText = addedLeadingZero.seconds;
             
-            clearInterval(timerId);
+            // clearInterval(timerId);
         }
     },
 };
