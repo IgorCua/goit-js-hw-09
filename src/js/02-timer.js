@@ -38,7 +38,7 @@ const options = {
         }
     },
 };
-options.onClose.bind(options);
+
 flatpickr("#datetime-picker", options);
 
 startBtn.addEventListener('click', ()=>{
