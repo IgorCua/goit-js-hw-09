@@ -15,12 +15,9 @@ const options = {
     defaultDate: new Date(),
     minuteIncrement: 1,
     onClose(selectedDates) {
-        console.log(this);
         const selectedTime = selectedDates[0].getTime();
         const defaultTime = options.defaultDate.getTime();
-        const addedLeadingZero = addLeadingZero(convertMs(selectedTime - defaultTime));
         globalSelectedDate = selectedTime;
-        console.log(defaultTime)
         if(selectedTime < options.defaultDate){
             startBtn.disabled = true;
             clearInterval(timerId);
@@ -28,13 +25,6 @@ const options = {
             return;
         } else {
             startBtn.disabled = false;
-            
-            daysElement.innerText = addedLeadingZero.days;
-            hoursElement.innerText = addedLeadingZero.hours;
-            minutesElement.innerText = addedLeadingZero.minutes;
-            secondsElement.innerText = addedLeadingZero.seconds;
-            
-            // clearInterval(timerId);
         }
     },
 };
