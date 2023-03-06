@@ -15,6 +15,7 @@ const options = {
     defaultDate: new Date(),
     minuteIncrement: 1,
     onClose(selectedDates) {
+        console.log(this);
         const selectedTime = selectedDates[0].getTime();
         const defaultTime = options.defaultDate.getTime();
         const addedLeadingZero = addLeadingZero(convertMs(selectedTime - defaultTime));
@@ -37,7 +38,7 @@ const options = {
         }
     },
 };
-
+options.onClose.bind(options);
 flatpickr("#datetime-picker", options);
 
 startBtn.addEventListener('click', ()=>{

@@ -16,22 +16,12 @@ function createPromise(position, delay) {
   });
 }
 
-function submit(event){
-  event.preventDefault();
-  console.log(event);
-  console.log(event.target.elements.amount.value);
-  console.log(event.target.elements.delay.value);
-  console.log(event.target.elements.step.value);
-}
-
 function formData(event){
   event.preventDefault();
   const elements = event.target.elements;
   let miliseconds = +elements.delay.value;
 
   for(let i = 1; i <= elements.amount.value; i++){
-    if(i !== 1) miliseconds += +elements.step.value, 10;
-
     createPromise(i, miliseconds)
     .then(({ position, delay }) => {
       console.log(`✅ Fulfilled promise ${position} in ${delay}ms`);
@@ -39,5 +29,7 @@ function formData(event){
     .catch(({ position, delay }) => {
       console.log(`❌ Rejected promise ${position} in ${delay}ms`);
     });
+
+    miliseconds += +elements.step.value;
   }
 }
