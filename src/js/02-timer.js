@@ -51,7 +51,7 @@ function convertMs(ms) {
     // Remaining seconds
     const seconds = Math.floor((((ms % day) % hour) % minute) / second);
     return { days, hours, minutes, seconds };
-  }
+}
   
 function addLeadingZero(value){
     return value.toString().padStart(2, '0');
