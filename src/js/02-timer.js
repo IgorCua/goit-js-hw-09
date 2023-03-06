@@ -16,16 +16,16 @@ const options = {
     minuteIncrement: 1,
     onClose(selectedDates) {
         const selectedTime = selectedDates[0].getTime();
-        const defaultTime = options.defaultDate.getTime();
-        globalSelectedDate = selectedTime;
+        // const defaultTime = options.defaultDate.getTime();
         if(selectedTime < options.defaultDate){
             startBtn.disabled = true;
-            clearInterval(timerId);
             alert("Please choose a date in the future");
             return;
         } else {
             startBtn.disabled = false;
+            globalSelectedDate = selectedTime;
         }
+        
     },
 };
 
@@ -54,25 +54,20 @@ function convertMs(ms) {
   }
   
 function addLeadingZero(value){
-    let obj = {};
-    for(const key in value){
-        obj[key] = value[key].toString().length === 1 ? value[key].toString().padStart(2, '0') : value[key].toString();
-    }
-    return obj;
+    return value.toString().padStart(2, '0');
 }
 
 function timeCounter(){
     const date = new Date();
     let selectedDate = globalSelectedDate;
-    let obj = addLeadingZero(convertMs(selectedDate - date));
+    let obj = convertMs(selectedDate - date);
 
     if(selectedDate - date < 0){
-        clearInterval(timerId);
         return;
     }
 
-    daysElement.innerText = obj.days;
-    hoursElement.innerText = obj.hours;
-    minutesElement.innerText = obj.minutes;
-    secondsElement.innerText = obj.seconds;
+    daysElement.innerText = addLeadingZero(obj.days);
+    hoursElement.innerText = addLeadingZero(obj.hours);
+    minutesElement.innerText = addLeadingZero(obj.minutes);
+    secondsElement.innerText = addLeadingZero(obj.seconds);
 }
